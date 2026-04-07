@@ -1,4 +1,4 @@
-# 🏥 MediRAG — Clinical Decision Support AI
+#  MediRAG — Clinical Decision Support AI
 
 > **AI-powered Retrieval-Augmented Generation for rare disease diagnosis**
 > Built with Google Gemini · PubMed · openFDA · ChromaDB · FastAPI · React
@@ -7,20 +7,20 @@
 
 ---
 
-## 🧠 What is MediRAG?
+##  What is MediRAG?
 
 MediRAG is a full-stack, AI-powered **Clinical Decision Support Assistant** built for physicians facing rare or complex diagnoses. Instead of relying on an LLM's generalized training data (which can hallucinate), MediRAG uses a **RAG (Retrieval-Augmented Generation)** architecture to:
 
-1. 📚 **Pull real, trusted medical knowledge** from PubMed research articles and openFDA drug labels
-2. 🔍 **Semantically search** that knowledge base for the most relevant passages to a physician's query
-3. 🤖 **Ground the LLM's response exclusively in retrieved context**, ensuring every claim is backed by a real source
-4. 📋 **Return inline citations** so the physician can verify the original literature
+1.  **Pull real, trusted medical knowledge** from PubMed research articles and openFDA drug labels
+2.  **Semantically search** that knowledge base for the most relevant passages to a physician's query
+3.  **Ground the LLM's response exclusively in retrieved context**, ensuring every claim is backed by a real source
+4.  **Return inline citations** so the physician can verify the original literature
 
 The result is a medically grounded, hallucination-resistant AI assistant that thinks like a specialist librarian — retrieving evidence first, then forming conclusions.
 
 ---
 
-## 🔄 End-to-End RAG Pipeline
+##  End-to-End RAG Pipeline
 
 ```
  DATA SOURCES          INGESTION PIPELINE              QUERY PIPELINE
@@ -29,24 +29,24 @@ The result is a medically grounded, hallucination-resistant AI assistant that th
 │ (50 papers) │       │  & Cleaning        │          │ + Patient Context│
 └─────────────┘       └────────────────────┘          └────────┬─────────┘
                                │                               │
-┌─────────────┐       ┌────────▼────────────┐          ┌──────▼──────────┐
-│ openFDA API │──────▶│ Text Chunking        │          │ Query Embedding │
-│ (30 labels) │       │ (500 chars, 50 ovlp) │          │ all-MiniLM-L6v2 │
-└─────────────┘       └─────────────────────┘          └────────┬─────────┘
-                               │                               │
-                      ┌────────▼────────────┐          ┌──────▼──────────┐
-                      │ Embedding Generation │◀─────────│                 │
+┌─────────────┐       ┌────────▼────────────┐          ┌───────▼─────────┐
+│ openFDA API │──────▶│ Text Chunking       │          │ Query Embedding │
+│ (30 labels) │       │ (500 chars, 50 ovlp)│          │ all-MiniLM-L6v2 │
+└─────────────┘       └─────────────────────┘          └────────┬────────┘
+                               │                                │
+                      ┌────────▼────────────┐          ┌────────▼────────┐
+                      │ Embedding Generation│◀──────── │                 │
                       │ all-MiniLM-L6-v2    │          │   ChromaDB      │
-                      │ (384-dim vectors)   │──────────▶│ Semantic Search │
+                      │ (384-dim vectors)   │─────────▶│ Semantic Search │
                       └─────────────────────┘          │   (Top-10)      │
-                               │                       └────────┬─────────┘
+                               │                       └────────┬────────┘
                       ┌────────▼────────────┐                   │
                       │     ChromaDB        │          ┌────────▼─────────┐
                       │  (365 indexed chunks│          │  Cross-Encoder   │
                       │   stored on disk)   │          │  Reranker (Top-5)│
                       └─────────────────────┘          └────────┬─────────┘
-                                                               │
-                                                      ┌────────▼─────────┐
+                                                                │
+                                                      ┌─────────▼────────┐
                                                       │  Prompt Builder  │
                                                       │  System + Context│
                                                       │  + Query         │
@@ -64,7 +64,7 @@ The result is a medically grounded, hallucination-resistant AI assistant that th
 ```
 
 ---
-
+<img width="1536" height="1024" alt="End-to-end medical retrieval system infographic" src="https://github.com/user-attachments/assets/8bf87196-435a-4af1-b16b-35bc4a9e5a78" />
 ## 🔬 Pipeline Components Explained
 
 ### Phase 1 — Data Ingestion *(runs once offline)*
@@ -90,7 +90,7 @@ The result is a medically grounded, hallucination-resistant AI assistant that th
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
@@ -106,7 +106,7 @@ The result is a medically grounded, hallucination-resistant AI assistant that th
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 medirag/
@@ -139,7 +139,7 @@ medirag/
 
 ---
 
-## 🚀 Local Setup & Running
+##  Local Setup & Running
 
 ### Prerequisites
 - Python 3.10+
@@ -187,13 +187,12 @@ The API will be available at `http://localhost:8000` and the React UI at `http:/
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 
-🤗 **Hugging Face Space:** https://huggingface.co/spaces/Amaanlakdawala/MediRAG-Clinical-Assistant
+ **Hugging Face Space:** https://huggingface.co/spaces/Amaanlakdawala/MediRAG-Clinical-Assistant
 
 ---
 
-## ⚠️ Disclaimer
+##  Disclaimer
 
 MediRAG is a research prototype built for the RAGx Hackathon. It is **not a substitute for professional medical advice, diagnosis, or treatment.** Always consult a qualified physician.
-<img width="1536" height="1024" alt="End-to-end medical retrieval system infographic" src="https://github.com/user-attachments/assets/8bf87196-435a-4af1-b16b-35bc4a9e5a78" />
