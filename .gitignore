@@ -1,0 +1,29 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment secrets - NEVER commit this
+.env
+
+# Node.js
+frontend/node_modules/
+frontend/.next/
+
+# Build output (keep dist for reference but exclude if large)
+# frontend/dist/
+
+# ChromaDB vector store (too large for GitHub, regenerated via embedder.py)
+chroma_db/
+
+# macOS
+.DS_Store
+
+# Deployment scripts with secrets
+deploy_hf.py
+
+# Data raw cache (regenerated via ingestion scripts)
+data/raw/

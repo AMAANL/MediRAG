@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+chromadb
+sentence-transformers
+langchain
+google-genai
+langchain-text-splitters
+requests
+pymupdf
+pdfplumber
+python-dotenv
+biopython
+pydantic
+pydantic-settings
